@@ -1,0 +1,90 @@
+/* Navbar.css */
+.navbar {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-underline {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2px;
+    width: 0;
+    background-color: var(--bs-primary);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover .nav-underline,
+  .nav-link.active .nav-underline {
+    width: 70%;
+  }
+  
+  .nav-link.active {
+    color: var(--bs-primary) !important;
+    font-weight: 500;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(90deg, #0d6efd, #00b4ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .book-service-btn {
+    transition: all 0.3s ease;
+    min-width: 140px;
+  }
+  
+  .book-service-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+  }
+  
+  .book-service-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .book-service-btn:hover::after {
+    opacity: 1;
+  }
+  
+  /* Mobile menu adjustments */
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      padding: 1rem 0;
+    }
+    
+    .nav-item {
+      margin: 0.5rem 0;
+    }
+    
+    .dropdown-menu {
+      border: none;
+      background-color: rgba(33, 37, 41, 0.95);
+    }
+    
+    .dropdown-item {
+      color: rgba(255, 255, 255, 0.8);
+      padding: 0.5rem 1.5rem;
+    }
+    
+    .dropdown-item:hover {
+      color: white;
+      background-color: transparent;
+    }
+    
+    .btn-outline-light, .book-service-btn {
+      width: 100%;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+  }
