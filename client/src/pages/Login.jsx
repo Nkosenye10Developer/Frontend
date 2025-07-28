@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
-import './Login.css';
-import logo from './assets/Ellipse 3.png'
+import '../Login.css';
+import logo from '../assets/Ellipse 3.png'
+import toast from 'react-hot-toast';
 
 
 function Login() {
@@ -10,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -22,11 +24,29 @@ function Login() {
       return;
     }
     
+    setIsLoading(true);
     // Here you would typically call your authentication API
     console.log('Login attempt with:', { email, password, rememberMe });
     
+
+    
+    toast.success("Logged successfully");
     // On successful login:
-    navigate('/dashboard');
+    navigate('/dashboard'); // Redirect to the layout page
+
+
+    setTimeout(() => {
+      toast.success(
+          responseData.Message ||
+          responseData.message ||
+          'Login successful',
+          {
+              duration: 2000,
+              position: 'top-center',
+
+          }
+      );
+  }, 100);
   };
 
   return (
@@ -127,12 +147,9 @@ function Login() {
               </div>
 
               {/* Submit Button */}
-              <button
-                type="submit"
-                className="btn btn-primary w-100 py-2 mb-3"
-              >
-                Login
-              </button>
+              <button className="control btn btn-primary w-100" type="submit" disabled={isLoading}>
+                        {isLoading ? (<div> <span className="spinner"></span> LOGGING IN...</div> ) : 'LOGIN'}
+                    </button>
 
               {/* Sign Up Link */}
               <div className="text-center mt-3">
