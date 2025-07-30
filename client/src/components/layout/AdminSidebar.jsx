@@ -34,8 +34,8 @@ export const AdminSidebar = ({ isOpen, onToggle }) => {
   // Set active nav link based on current route
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes('vehicles')) setActiveLink('My Vehicles');
-    else if (path.includes('wallet')) setActiveLink('Wallet');
+    if (path.includes('vehicles')) setActiveLink('Business Application');
+    else if (path.includes('wallet')) setActiveLink('Customer');
     else if (path.includes('history')) setActiveLink('Service History');
     else if (path.includes('referrals')) setActiveLink('Referrals');
     else setActiveLink('Dashboard');
@@ -43,10 +43,10 @@ export const AdminSidebar = ({ isOpen, onToggle }) => {
 
   const menuItems = [
     { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
-    { path: '/vehicles', icon: 'bx bx-car', text: 'My Vehicles' },
-    { path: '/wallet', icon: 'bx bx-wallet', text: 'Wallet' },
-    { path: '/history', icon: 'bx bx-history', text: 'Service History' },
-    { path: '/referrals', icon: 'bx bx-share-alt', text: 'Referrals' },
+    { path: '/vehicles', icon: 'bx bx-car', text: 'Business Application' },
+    { path: '/wallet', icon: 'bx bx-wallet', text: 'Customer' },
+    { path: '/history', icon: 'bx bx-history', text: 'Manage Reports' },
+    { path: '/referrals', icon: 'bx bx-share-alt', text: 'Stats' },
   ];
 
   return (

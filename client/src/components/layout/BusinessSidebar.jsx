@@ -43,10 +43,11 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
 
   const menuItems = [
     { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
-    { path: '/vehicles', icon: 'bx bx-car', text: 'My Vehicles' },
+    { path: '/vehicles', icon: 'bx bx-car', text: 'View JobRequest' },
     { path: '/wallet', icon: 'bx bx-wallet', text: 'Wallet' },
-    { path: '/history', icon: 'bx bx-history', text: 'Service History' },
-    { path: '/referrals', icon: 'bx bx-share-alt', text: 'Referrals' },
+    { path: '/history', icon: 'bx bx-history', text: 'Manage JobCards' },
+      { path: '/referrals', icon: 'bx bx-share-alt', text: 'Communication' },
+    { path: '/referrals', icon: 'bx bx-share-alt', text: 'Manage Profile' },
   ];
 
   return (

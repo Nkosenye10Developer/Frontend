@@ -4,7 +4,7 @@ import { BusinessLayout } from "../../components/layout/BusinessLayout";
 
 
 
-export const JobRequest = () => {
+export const ViewJobRequest = () => {
   return (
     <BusinessLayout>
       <div className="page-content">
