@@ -1,24 +1,28 @@
 import React from 'react';
 import './Layout.css';
 
-export const Topbar = ({ toggleSidebar, isSidebarOpen }) => {
+export const Topbar = ({ toggleSidebar, isSidebarOpen, isMobile }) => {
   return (
-    <nav className="top-navbar">
-      <div className="navbar-left">
-        <i 
-          className={`bx ${isSidebarOpen ? 'bx-x' : 'bx-menu'} sidebar-toggle`}
-          onClick={toggleSidebar}
-        />
-        <div className="greeting">
-          <h4>Hello Simphiwe 🤘</h4>
-        </div>
+    <header className="topbar">
+      <div className="topbar-left">
+        <button className="sidebar-toggle-btn" onClick={toggleSidebar}>
+          <i className={`bx ${isSidebarOpen ? 'bx-menu-alt-left' : 'bx-menu'}`} />
+        </button>
+        <h2 className="page-title">Dashboard</h2>
       </div>
-      <div className="navbar-right">
+      
+      <div className="topbar-right">
         <div className="search-box">
-          <i className='bx bx-search'></i>
-          <input type="text" placeholder="Search for anything here.." />
+          <i className="bx bx-search" />
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div className="user-actions">
+          <button className="notification-btn">
+            <i className="bx bx-bell" />
+            <span className="notification-badge">3</span>
+          </button>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };

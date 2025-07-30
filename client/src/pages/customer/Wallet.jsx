@@ -2,14 +2,15 @@ import React from "react";
 import { CustomerLayout } from '../../components/layout/CustomerLayout';
 import './Wallet.css'; // Basic styling
 import './Table.css'; // Table styling
+import { Link } from "react-router-dom";
 
 export const Wallet = () => {
   // Sample data - replace with your actual data
   const balance = 100.00;
   const transactions = [
-    { id: 1, date: '2023-06-15', description: 'Credit Purchase', amount: 50.00 },
-    { id: 2, date: '2023-06-10', description: 'Service Payment', amount: -30.00 },
-    { id: 3, date: '2023-05-28', description: 'Initial Deposit', amount: 80.00 }
+    { id: 1, date: '2023-06-15', description: 'Job Card #293', amount: -50.00 },
+    { id: 2, date: '2023-06-10', description: 'Job Card #2912', amount: -30.00 },
+    { id: 3, date: '2023-05-28', description: 'Job Card', amount: -80.00 }
   ];
 
   return (
@@ -18,9 +19,9 @@ export const Wallet = () => {
         {/* Header with Add Credits button */}
         <div className="wallet-header">
           <h1>Wallet</h1>
-          <button className="add-credits-btn">
+          <Link to="/add-credits" className="add-credits-btn">
             <i className="bi bi-plus-circle"></i> Add Credits
-          </button>
+          </Link>
         </div>
 
         {/* Balance Card */}

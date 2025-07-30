@@ -15,6 +15,7 @@ import { AddJobRequest } from '../pages/customer/AddJobRequest';
 import { ViewJobRequest } from '../pages/business/ViewJobRequest';
 import { ViewCustomer } from '../pages/admin/ViewCustomer';
 import { BusinessApplication } from '../pages/admin/BusinessApplication';
+import { AddCredits } from '../pages/customer/AddCredits';
 
 export const AppRoutes = () => {
   return (
@@ -28,6 +29,7 @@ export const AppRoutes = () => {
       <Route path="/vehicles" element={<Vehicles />} />
       <Route path="/add-vehicles" element={<AddVehicles />} />
       <Route path="/wallet" element={<Wallet />} />
+      <Route path="/add-credits" element={<AddCredits />} />
       <Route path="/jobrequest" element={<JobRequest />} />
       <Route path="/add-jobrequest" element={<AddJobRequest />} />
       <Route path="/history" element={<ServiceHistory />} />
