@@ -34,20 +34,22 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
   // Set active nav link based on current route
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes('vehicles')) setActiveLink('My Vehicles');
-    else if (path.includes('wallet')) setActiveLink('Wallet');
+    if (path.includes('invetorymanagement')) setActiveLink('Invetory Management');
     else if (path.includes('history')) setActiveLink('Service History');
-    else if (path.includes('referrals')) setActiveLink('Referrals');
+    else if (path.includes('managejobcards')) setActiveLink('Manage JobCards');
+    else if (path.includes('communication')) setActiveLink('Communication');
+     else if (path.includes('customer')) setActiveLink('Customer');
+    else if (path.includes('manageprofile')) setActiveLink('Manage Profile');
     else setActiveLink('Dashboard');
   }, [location]);
 
   const menuItems = [
     { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
-    { path: '/vehicles', icon: 'bx bx-car', text: 'View JobRequest' },
-    { path: '/wallet', icon: 'bx bx-wallet', text: 'Wallet' },
-    { path: '/history', icon: 'bx bx-history', text: 'Manage JobCards' },
-      { path: '/referrals', icon: 'bx bx-share-alt', text: 'Communication' },
-    { path: '/referrals', icon: 'bx bx-share-alt', text: 'Manage Profile' },
+    { path: '/invetorymanagement', icon: 'bx bx-wallet', text: 'Invetory Management' },
+    { path: '/managejobcards', icon: 'bx bx-history', text: 'Manage JobCards' },
+    { path: '/communication', icon: 'bx bx-share-alt', text: 'Communication' },
+    { path: '/customer', icon: 'bx bx-share-alt', text: 'Customer' },
+    { path: '/manageprofile', icon: 'bx bx-share-alt', text: 'Manage Profile' },
   ];
 
   return (

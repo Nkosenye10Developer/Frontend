@@ -34,19 +34,23 @@ export const AdminSidebar = ({ isOpen, onToggle }) => {
   // Set active nav link based on current route
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes('vehicles')) setActiveLink('Business Application');
-    else if (path.includes('wallet')) setActiveLink('Customer');
-    else if (path.includes('history')) setActiveLink('Service History');
-    else if (path.includes('referrals')) setActiveLink('Referrals');
+    if (path.includes('businessapplication')) setActiveLink('Business Application');
+    else if (path.includes('viewcustomer')) setActiveLink('Customer');
+    else if (path.includes('managereport')) setActiveLink('Manage Reports');
+    else if (path.includes('communications')) setActiveLink('Communications');
+    else if (path.includes('managebusinesses')) setActiveLink('Manage Businesses');
+    else if (path.includes('stats')) setActiveLink('Stats');
     else setActiveLink('Dashboard');
   }, [location]);
 
   const menuItems = [
     { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
-    { path: '/vehicles', icon: 'bx bx-car', text: 'Business Application' },
-    { path: '/wallet', icon: 'bx bx-wallet', text: 'Customer' },
-    { path: '/history', icon: 'bx bx-history', text: 'Manage Reports' },
-    { path: '/referrals', icon: 'bx bx-share-alt', text: 'Stats' },
+    { path: '/businessapplication', icon: 'bx bx-car', text: 'Business Application' },
+    { path: '/viewcustomer', icon: 'bx bx-wallet', text: 'Customer' },
+    { path: '/managereports', icon: 'bx bx-history', text: 'Manage Reports' },
+    { path: '/stats', icon: 'bx bx-share-alt', text: 'Stats' },
+    { path: '/communications', icon: 'bx bx-share-alt', text: 'Communications' },
+    { path: '/managebusinesses', icon: 'bx bx-share-alt', text: 'Manage Businesses' },
   ];
 
   return (
