@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation,useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import './Layout.css';
 import logo from '/logo.png';
 import picture from '/Picture.png';
@@ -12,9 +12,9 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
   const navigate = useNavigate();
 
   const logout = async () => {
-    toast.success("Logged out");
-    navigate('/'); // or wherever your login page is
-};
+    toast.success("Logged out successfully");
+    navigate('/login');
+  };
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -51,7 +51,6 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
     { path: '/customer', icon: 'bx bx-share-alt', text: 'Customer' },
     { path: '/manageprofile', icon: 'bx bx-share-alt', text: 'Manage Profile' },
   ];
-
   return (
     <>
       {/* Sidebar Overlay (for mobile) */}
@@ -62,68 +61,76 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
         />
       )}
 
-      {/* Sidebar */}
+      {/* Premium Sidebar */}
       <nav 
         ref={sidebarRef}
         className={`sidebar ${isOpen ? 'active' : ''} ${!isOpen ? 'close' : ''}`}
       >
-        <header>
-          <div className="image-text">
-            <span className="image">
-              <img src={logo} alt="AutoFix Logo" className="rounded-circle" />
-            </span>
+        <header className="sidebar-header">
+          <div className="logo-container">
+            <div className="logo-image">
+              <img src={logo} alt="AutoFix Logo" />
+            </div>
             {isOpen && (
-              <div className="text logo-text">
-                <span className="name text-black">AutoFix</span>
+              <div className="logo-text">
+                <span className="app-name">AutoFix</span>
+                <span className="app-tagline">Vehicle Services</span>
               </div>
             )}
           </div>
-          <i 
-            className={`bx ${isOpen ? 'bx-chevron-left' : 'bx-chevron-right'} toggle`}
+          <button 
+            className="sidebar-toggle"
             onClick={onToggle}
-          />
+            aria-label="Toggle sidebar"
+          >
+            <i className={`bx ${isOpen ? 'bx-chevron-left' : 'bx-chevron-right'}`} />
+          </button>
         </header>
 
-        <div className="menu-bar">
-          <div className="menu">
-            <ul className="menu-links list-unstyled">
-              {menuItems.map((item) => (
-                <li 
-                  key={item.text}
-                  className={`nav-link ${activeLink === item.text ? 'active' : ''}`}
-                  onClick={() => {
-                    setActiveLink(item.text);
-                    if (window.innerWidth <= 1200) onToggle();
-                  }}
+        <div className="sidebar-menu">
+          <ul className="menu-items">
+            {menuItems.map((item) => (
+              <li 
+                key={item.text}
+                className={`menu-item ${activeLink === item.text ? 'active' : ''}`}
+                onClick={() => {
+                  setActiveLink(item.text);
+                  if (window.innerWidth <= 1200) onToggle();
+                }}
+              >
+                <NavLink 
+                  to={item.path} 
+                  className="menu-link"
                 >
-                  <NavLink 
-                    to={item.path} 
-                    className="d-flex align-items-center"
-                    activeClassName="active"
-                  >
-                    <i className={`${item.icon} icon`}></i>
-                    {isOpen && <span className="text nav-text">{item.text}</span>}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bottom-content">
-            <li className="logout">
-            
-            <button onClick={logout} className="d-flex align-items-center btn btn-danger w-100"> <i className='bx bx-log-out icon text-white'></i> Logout</button>
-            
-            </li>
-            {isOpen && (
-              <li className="search-box d-flex align-items-center mt-2">
-                <img src={picture} alt="User" className="me-1" />
-                <div className="names">
-                  <span className="text-black text-nowrap">Nkosenye Hleza</span>
-                  <span className="role d-block">Customer</span>
-                </div>
+                  <i className={`${item.icon} menu-icon`}></i>
+                  {isOpen && <span className="menu-text">{item.text}</span>}
+                  {isOpen && activeLink === item.text && (
+                    <div className="active-indicator"></div>
+                  )}
+                </NavLink>
               </li>
-            )}
+            ))}
+          </ul>
+
+          <div className="sidebar-footer">
+            <div className="user-profile">
+              {isOpen && (
+                <div className="profile-info">
+                  <img src={picture} alt="User" className="profile-image" />
+                  <div className="profile-details">
+                    <span className="profile-name">Nkosenye Hleza</span>
+                    <span className="profile-role">Business/Services Provider</span>
+                  </div>
+                </div>
+              )}
+            </div>
+            <button 
+              onClick={logout}
+              className="logout-button"
+            >
+              <i className='bx bx-log-out'></i>
+              {isOpen && <span>Logout</span>}
+            </button>
           </div>
         </div>
       </nav>

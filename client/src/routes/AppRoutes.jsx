@@ -15,25 +15,25 @@ import { AddJobRequest } from '../pages/customer/AddJobRequest';
 import { ViewJobRequest } from '../pages/business/ViewJobRequest';
 import { ViewCustomer } from '../pages/admin/ViewCustomer';
 import { BusinessApplication } from '../pages/admin/BusinessApplication';
-
 import { AddCredits } from '../pages/customer/AddCredits';
 import { Communications } from '../pages/admin/Communications';
 import { ManageBusinesses } from '../pages/admin/ManageBusinesses';
 import { Stats } from '../pages/admin/Stats';
 import { ManageReports } from '../pages/admin/ManageReports';
-import { Register } from '../pages/business/Register';
+
 import { ManageJobCards } from '../pages/business/ManageJobCards';
 import { InvetoryManagement } from '../pages/business/InvetoryManagement';
 import { Communication } from '../pages/business/Communication';
 import { ManageProfile } from '../pages/business/ManageProfile';
 import { Customer } from '../pages/business/Customer';
+import Signup from '../pages/Signup';
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
-
+      <Route path="/signup" element={<Signup />} />
       {/* Customer Routes */}
       <Route path="/customer" element={<CustomerLayout />} />
      <Route path="/dashboard" element={<Dashboard />} />

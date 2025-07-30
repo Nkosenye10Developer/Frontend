@@ -89,13 +89,13 @@ function Body() {
               <div className="d-flex flex-wrap gap-3">
                 <button 
                   className="btn btn-primary btn-lg px-4 py-3"
-                  onClick={() => navigate('/register')}
+                  onClick={() => navigate('/signup')}
                 >
                   Get Started as Customer
                 </button>
                 <button 
                   className="btn btn-outline-light btn-lg px-4 py-3"
-                  onClick={() => navigate('/workshop-register')}
+                  onClick={() => navigate('/signup')}
                 >
                   Join as Workshop
                 </button>
@@ -379,13 +379,13 @@ function Body() {
               <div className="d-flex flex-wrap justify-content-center gap-3">
                 <button 
                   className="btn btn-light btn-lg px-5 py-3"
-                  onClick={() => navigate('/register')}
+                  onClick={() => navigate('/signup')}
                 >
                   Sign Up Free
                 </button>
                 <button 
                   className="btn btn-outline-light btn-lg px-5 py-3"
-                  onClick={() => navigate('/how-it-works')}
+                  onClick={() => navigate('/signup')}
                 >
                   Learn More
                 </button>

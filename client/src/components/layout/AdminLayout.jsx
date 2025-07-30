@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Topbar } from './Topbar';
+import { Outlet } from 'react-router-dom';
 import { AdminSidebar } from './AdminSidebar';
+import { Topbar } from './Topbar';
 import './Layout.css';
 
-
 export const AdminLayout = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 1200);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Handle responsive behavior
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1200) {
-        setIsSidebarOpen(true);
-      } else {
+      const mobile = window.innerWidth <= 1200;
+      setIsMobile(mobile);
+      if (mobile) {
         setIsSidebarOpen(false);
+      } else {
+        setIsSidebarOpen(true);
       }
     };
 
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -27,11 +30,20 @@ export const AdminLayout = ({ children }) => {
 
   return (
     <div className="app-container">
-      <Topbar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <AdminSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
-      <main className={`home ${isSidebarOpen ? 'shifted' : ''}`}>
-        {children}
-      </main>
+      
+      <div className={`main-content ${isSidebarOpen ? 'expanded' : 'collapsed'}`}>
+        <Topbar 
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+          isMobile={isMobile}
+        />
+        
+        <div className="content-wrapper">
+          <Outlet />
+          {children}
+        </div>
+      </div>
     </div>
   );
 };
