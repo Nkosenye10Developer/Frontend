@@ -15,7 +15,18 @@ import { AddJobRequest } from '../pages/customer/AddJobRequest';
 import { ViewJobRequest } from '../pages/business/ViewJobRequest';
 import { ViewCustomer } from '../pages/admin/ViewCustomer';
 import { BusinessApplication } from '../pages/admin/BusinessApplication';
+
 import { AddCredits } from '../pages/customer/AddCredits';
+import { Communications } from '../pages/admin/Communications';
+import { ManageBusinesses } from '../pages/admin/ManageBusinesses';
+import { Stats } from '../pages/admin/Stats';
+import { ManageReports } from '../pages/admin/ManageReports';
+import { Register } from '../pages/business/Register';
+import { ManageJobCards } from '../pages/business/ManageJobCards';
+import { InvetoryManagement } from '../pages/business/InvetoryManagement';
+import { Communication } from '../pages/business/Communication';
+import { ManageProfile } from '../pages/business/ManageProfile';
+import { Customer } from '../pages/business/Customer';
 
 export const AppRoutes = () => {
   return (
@@ -35,13 +46,25 @@ export const AppRoutes = () => {
       <Route path="/history" element={<ServiceHistory />} />
       <Route path="/referrals" element={<Referrals />} />
 
- {/* Admin Routes */}
+     {/* Admin Routes */}
       <Route path="/admin" element={<AdminLayout />} />
       <Route path="/viewcustomer" element={<ViewCustomer/>} />
-         <Route path="/businessapplication" element={<BusinessApplication/>} />
-        {/* Business Routes */}
+      <Route path="/businessapplication" element={<BusinessApplication/>} />
+      <Route path="/communications" element={<Communications/>} />
+      <Route path="/managebusinesses" element={<ManageBusinesses/>} />
+      <Route path="/stats" element={<Stats/>} />
+      <Route path="/managereports" element={<ManageReports/>} />
+
+     {/* Business Routes */}
       <Route path="/business" element={<BusinessLayout />} />
       <Route path="/viewjobrequest" element={<ViewJobRequest />} />
+      {/* <Route path="/register" element={<Register />} /> */}
+      <Route path="/managejobcards" element={< ManageJobCards/>} />
+      <Route path="/invetorymanagement" element={<InvetoryManagement />} />
+      <Route path="/communication" element={<Communication />} />
+      <Route path="/manageprofile" element={<ManageProfile />} />
+      <Route path="/customer" element={<Customer />} />
     </Routes>
+
   );
 };
