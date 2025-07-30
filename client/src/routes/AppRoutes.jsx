@@ -12,6 +12,8 @@ import { Wallet } from '../pages/customer/Wallet';
 import { AddVehicles } from '../pages/customer/AddVehicles';
 import { JobRequest } from '../pages/customer/JobRequest';
 import { AddJobRequest } from '../pages/customer/AddJobRequest';
+import { JobRequestBusiness } from '../pages/business/JobRequest';
+import { ViewCustomer } from '../pages/admin/ViewCustomer';
 
 export const AppRoutes = () => {
   return (
@@ -32,9 +34,10 @@ export const AppRoutes = () => {
 
  {/* Admin Routes */}
       <Route path="/admin" element={<AdminLayout />} />
-
+      <Route path="/viewcustomer" element={<ViewCustomer/>} />
         {/* Business Routes */}
       <Route path="/business" element={<BusinessLayout />} />
+      <Route path="/businessrequest" element={<JobRequestBusiness />} />
     </Routes>
   );
 };
