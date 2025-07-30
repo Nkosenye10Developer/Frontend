@@ -9,6 +9,9 @@ import { Vehicles } from '../pages/customer/Vehicles';
 import { Referrals } from '../pages/customer/Referrals';
 import { ServiceHistory } from '../pages/customer/ServiceHistory';
 import { Wallet } from '../pages/customer/Wallet';
+import { AddVehicles } from '../pages/customer/AddVehicles';
+import { JobRequest } from '../pages/customer/JobRequest';
+import { AddJobRequest } from '../pages/customer/AddJobRequest';
 
 export const AppRoutes = () => {
   return (
@@ -20,7 +23,10 @@ export const AppRoutes = () => {
       <Route path="/customer" element={<CustomerLayout />} />
      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/vehicles" element={<Vehicles />} />
+      <Route path="/add-vehicles" element={<AddVehicles />} />
       <Route path="/wallet" element={<Wallet />} />
+      <Route path="/jobrequest" element={<JobRequest />} />
+      <Route path="/add-jobrequest" element={<AddJobRequest />} />
       <Route path="/history" element={<ServiceHistory />} />
       <Route path="/referrals" element={<Referrals />} />
 

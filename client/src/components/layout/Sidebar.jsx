@@ -37,8 +37,9 @@ export const Sidebar = ({ isOpen, onToggle }) => {
     if (path.includes('vehicles')) setActiveLink('My Vehicles');
     else if (path.includes('wallet')) setActiveLink('Wallet');
     else if (path.includes('history')) setActiveLink('Service History');
+    else if (path.includes('jobrequest')) setActiveLink('Job Request');
     else if (path.includes('referrals')) setActiveLink('Referrals');
-    else setActiveLink('Dashboard');
+    else if (path.includes('dashboard')) setActiveLink('Dashboard');
   }, [location]);
 
   const menuItems = [
@@ -46,7 +47,9 @@ export const Sidebar = ({ isOpen, onToggle }) => {
     { path: '/vehicles', icon: 'bx bx-car', text: 'My Vehicles' },
     { path: '/wallet', icon: 'bx bx-wallet', text: 'Wallet' },
     { path: '/history', icon: 'bx bx-history', text: 'Service History' },
+    { path: '/jobrequest', icon: 'bi bi-wrench', text: 'Job Request' },
     { path: '/referrals', icon: 'bx bx-share-alt', text: 'Referrals' },
+
   ];
 
   return (

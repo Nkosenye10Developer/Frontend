@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Topbar } from './Topbar';
 import { BusinessSidebar } from './BusinessSidebar';
 import './Layout.css';
-
+import { Outlet } from 'react-router-dom';
 
 export const BusinessLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth > 1200);
@@ -29,8 +29,9 @@ export const BusinessLayout = ({ children }) => {
     <div className="app-container">
       <Topbar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <BusinessSidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
-      <main className={`home ${isSidebarOpen ? 'shifted' : ''}`}>
+      <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
         {children}
+        <Outlet />
       </main>
     </div>
   );
