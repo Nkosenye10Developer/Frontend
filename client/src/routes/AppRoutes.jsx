@@ -22,7 +22,7 @@ import { Stats } from '../pages/admin/Stats';
 import { ManageReports } from '../pages/admin/ManageReports';
 
 import { ManageJobCards } from '../pages/business/ManageJobCards';
-import { InvetoryManagement } from '../pages/business/InvetoryManagement';
+import { InventoryManagement } from '../pages/business/InventoryManagement';
 import { Communication } from '../pages/business/Communication';
 import { ManageProfile } from '../pages/business/ManageProfile';
 import { Customer } from '../pages/business/Customer';
@@ -60,7 +60,7 @@ export const AppRoutes = () => {
       <Route path="/viewjobrequest" element={<ViewJobRequest />} />
       {/* <Route path="/register" element={<Register />} /> */}
       <Route path="/managejobcards" element={< ManageJobCards/>} />
-      <Route path="/invetorymanagement" element={<InvetoryManagement />} />
+      <Route path="/inventorymanagement" element={<InventoryManagement />} />
       <Route path="/communication" element={<Communication />} />
       <Route path="/manageprofile" element={<ManageProfile />} />
       <Route path="/customer" element={<Customer />} />

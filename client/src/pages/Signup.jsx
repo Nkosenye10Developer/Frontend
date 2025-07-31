@@ -65,151 +65,148 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
-      <div className="card shadow-lg">
-        <div className="row g-0">
+    <div className="signup-page">
+      <div className="signup-card">
+        <div className="signup-layout">
           {/* Left Side - Image (hidden on mobile) */}
-          <div className="col-md-6 d-none d-md-block">
-            <div className="h-100 d-flex align-items-center justify-content-center">
-              <img
-                src={logo}
-                alt="Signup visual"
-                className="img-fluid p-4"
-                style={{ maxHeight: '80%', objectFit: 'contain' }}
-              />
-            </div>
+          <div className="signup-image-container">
+            <img
+              src={logo}
+              alt="Signup visual"
+              className="signup-image"
+            />
           </div>
           
           {/* Right Side - Signup Form */}
-          <div className="col-md-6 p-4 p-md-5">
-            <div className="form-container">
-              <div className="text-center mb-4">
-                <h2 className="fw-bold">Create Your Account</h2>
-                <p className="text-muted">Join as a customer or business</p>
+          <div className="signup-form-container">
+            <div className="signup-form">
+              <div className="signup-header">
+                <h2>Create Your Account</h2>
+                <p>Join as a customer or business</p>
               </div>
 
               {/* User Type Selector */}
-              <div className="user-type-selector mb-4">
+              <div className="user-type-selector">
                 <button
                   type="button"
-                  className={`btn ${userType === 'customer' ? 'btn-primary' : 'btn-outline-primary'}`}
+                  className={`user-type-btn ${userType === 'customer' ? 'primary' : 'secondary'}`}
                   onClick={() => setUserType('customer')}
                 >
                   I'm a Customer
                 </button>
                 <button
                   type="button"
-                  className={`btn ${userType === 'business' ? 'btn-primary' : 'btn-outline-primary'}`}
+                  className={`user-type-btn ${userType === 'business' ? 'primary' : 'secondary'}`}
                   onClick={() => setUserType('business')}
                 >
                   I'm a Business
                 </button>
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="signup-form-fields">
                 {/* Common Fields */}
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
+                <div className="form-group">
+                  <label htmlFor="name">
                     {userType === 'customer' ? 'Full Name' : 'Representative Name'}
                   </label>
                   <div className="input-group">
-                    <span className="input-group-text">
+                    <span className="input-icon">
                       <FaUser />
                     </span>
                     <input
                       type="text"
                       id="name"
                       name="name"
-                      className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                      className={`form-input ${errors.name ? 'invalid' : ''}`}
                       placeholder={userType === 'customer' ? 'John Doe' : 'Your name'}
                       value={formData.name}
                       onChange={handleChange}
                     />
-                    {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                    {errors.name && <div className="error-message">{errors.name}</div>}
                   </div>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
                   <div className="input-group">
-                    <span className="input-group-text">
+                    <span className="input-icon">
                       <FaEnvelope />
                     </span>
                     <input
                       type="email"
                       id="email"
                       name="email"
-                      className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                      className={`form-input ${errors.email ? 'invalid' : ''}`}
                       placeholder="your@email.com"
                       value={formData.email}
                       onChange={handleChange}
                     />
-                    {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                    {errors.email && <div className="error-message">{errors.email}</div>}
                   </div>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="phone" className="form-label">Phone Number</label>
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number</label>
                   <div className="input-group">
-                    <span className="input-group-text">
+                    <span className="input-icon">
                       <FaPhone />
                     </span>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
-                      className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                      className={`form-input ${errors.phone ? 'invalid' : ''}`}
                       placeholder="+1 (555) 123-4567"
                       value={formData.phone}
                       onChange={handleChange}
                     />
-                    {errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
+                    {errors.phone && <div className="error-message">{errors.phone}</div>}
                   </div>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
                   <div className="input-group">
-                    <span className="input-group-text">
+                    <span className="input-icon">
                       <FaLock />
                     </span>
                     <input
                       type={showPassword ? "text" : "password"}
                       id="password"
                       name="password"
-                      className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                      className={`form-input ${errors.password ? 'invalid' : ''}`}
                       placeholder="Create a password"
                       value={formData.password}
                       onChange={handleChange}
                     />
                     <button
-                      className="btn btn-outline-secondary"
+                      className="password-toggle"
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                     >
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
-                    {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                    {errors.password && <div className="error-message">{errors.password}</div>}
                   </div>
                 </div>
 
-                <div className="mb-3">
-                  <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                <div className="form-group">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
                   <div className="input-group">
-                    <span className="input-group-text">
+                    <span className="input-icon">
                       <FaLock />
                     </span>
                     <input
                       type={showPassword ? "text" : "password"}
                       id="confirmPassword"
                       name="confirmPassword"
-                      className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                      className={`form-input ${errors.confirmPassword ? 'invalid' : ''}`}
                       placeholder="Confirm your password"
                       value={formData.confirmPassword}
                       onChange={handleChange}
                     />
                     {errors.confirmPassword && (
-                      <div className="invalid-feedback">{errors.confirmPassword}</div>
+                      <div className="error-message">{errors.confirmPassword}</div>
                     )}
                   </div>
                 </div>
@@ -217,33 +214,33 @@ function Signup() {
                 {/* Business Specific Fields */}
                 {userType === 'business' && (
                   <>
-                    <div className="mb-3">
-                      <label htmlFor="businessName" className="form-label">Business Name</label>
+                    <div className="form-group">
+                      <label htmlFor="businessName">Business Name</label>
                       <div className="input-group">
-                        <span className="input-group-text">
+                        <span className="input-icon">
                           <FaBuilding />
                         </span>
                         <input
                           type="text"
                           id="businessName"
                           name="businessName"
-                          className={`form-control ${errors.businessName ? 'is-invalid' : ''}`}
+                          className={`form-input ${errors.businessName ? 'invalid' : ''}`}
                           placeholder="Your business name"
                           value={formData.businessName}
                           onChange={handleChange}
                         />
                         {errors.businessName && (
-                          <div className="invalid-feedback">{errors.businessName}</div>
+                          <div className="error-message">{errors.businessName}</div>
                         )}
                       </div>
                     </div>
 
-                    <div className="mb-3">
-                      <label htmlFor="businessType" className="form-label">Business Type</label>
+                    <div className="form-group">
+                      <label htmlFor="businessType">Business Type</label>
                       <select
                         id="businessType"
                         name="businessType"
-                        className={`form-select ${errors.businessType ? 'is-invalid' : ''}`}
+                        className={`form-select ${errors.businessType ? 'invalid' : ''}`}
                         value={formData.businessType}
                         onChange={handleChange}
                       >
@@ -255,20 +252,20 @@ function Signup() {
                         <option value="other">Other</option>
                       </select>
                       {errors.businessType && (
-                        <div className="invalid-feedback">{errors.businessType}</div>
+                        <div className="error-message">{errors.businessType}</div>
                       )}
                     </div>
                   </>
                 )}
 
                 <button
-                  className="btn btn-primary w-100 mt-3"
+                  className="submit-btn"
                   type="submit"
                   disabled={isLoading}
                 >
                   {isLoading ? (
                     <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      <span className="spinner" role="status" aria-hidden="true"></span>
                       Creating Account...
                     </>
                   ) : (
@@ -276,10 +273,10 @@ function Signup() {
                   )}
                 </button>
 
-                <div className="text-center mt-3">
-                  <p className="text-muted">
+                <div className="login-link">
+                  <p>
                     Already have an account?{' '}
-                    <a href="/login" className="text-decoration-none fw-semibold">
+                    <a href="/login">
                       Log in
                     </a>
                   </p>

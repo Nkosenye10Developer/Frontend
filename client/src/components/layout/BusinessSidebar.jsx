@@ -34,23 +34,23 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
   // Set active nav link based on current route
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes('invetorymanagement')) setActiveLink('Invetory Management');
+    if (path.includes('inventorymanagement')) setActiveLink('Invetory Management');
     else if (path.includes('history')) setActiveLink('Service History');
     else if (path.includes('managejobcards')) setActiveLink('Manage JobCards');
     else if (path.includes('communication')) setActiveLink('Communication');
-     else if (path.includes('customer')) setActiveLink('Customer');
+    else if (path.includes('viewjobrequest')) setActiveLink('View Job Request');
     else if (path.includes('manageprofile')) setActiveLink('Manage Profile');
     else setActiveLink('Dashboard');
-  }, [location]);
+}, [location]);
 
-  const menuItems = [
+const menuItems = [
     { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
-    { path: '/invetorymanagement', icon: 'bx bx-wallet', text: 'Invetory Management' },
-    { path: '/managejobcards', icon: 'bx bx-history', text: 'Manage JobCards' },
-    { path: '/communication', icon: 'bx bx-share-alt', text: 'Communication' },
-    { path: '/customer', icon: 'bx bx-share-alt', text: 'Customer' },
-    { path: '/manageprofile', icon: 'bx bx-share-alt', text: 'Manage Profile' },
-  ];
+    { path: '/inventorymanagement', icon: 'bx bx-package', text: 'Invetory Management' },
+    { path: '/managejobcards', icon: 'bx bx-clipboard', text: 'Manage JobCards' },
+    { path: '/communication', icon: 'bx bx-message-dots', text: 'Communication' },
+    { path: '/viewjobrequest', icon: 'bx bx-task', text: 'View Job Request' },
+    { path: '/manageprofile', icon: 'bx bx-user', text: 'Manage Profile' },
+];
   return (
     <>
       {/* Sidebar Overlay (for mobile) */}
