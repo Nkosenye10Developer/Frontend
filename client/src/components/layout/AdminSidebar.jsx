@@ -45,13 +45,13 @@ export const AdminSidebar = ({ isOpen, onToggle }) => {
   }, [location]);
 
   const menuItems = [
-    { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
-    { path: '/businessapplication', icon: 'bx bx-car', text: 'Business Application' },
-    { path: '/viewcustomer', icon: 'bx bx-wallet', text: 'View Customer' },
-    { path: '/managereports', icon: 'bx bx-history', text: 'Manage Reports' },
-    { path: '/stats', icon: 'bx bx-share-alt', text: 'Stats' },
-    { path: '/communications', icon: 'bx bx-share-alt', text: 'Communications' },
-    { path: '/managebusinesses', icon: 'bx bx-share-alt', text: 'Manage Businesses' },
+    { path: '/admindashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
+    { path: '/businessapplication', icon: 'bx bx-clipboard', text: 'Business Application' },
+    { path: '/viewcustomer', icon: 'bx bx-user', text: 'View Customer' },
+    { path: '/managereports', icon: 'bx bx-chart', text: 'Manage Reports' },
+    { path: '/stats', icon: 'bx bx-bar-chart-alt-2', text: 'Stats' },
+    { path: '/communications', icon: 'bx bx-chat', text: 'Communications' },
+    { path: '/managebusinesses', icon: 'bx bx-buildings', text: 'Manage Businesses' },
   ];
 
   return (
@@ -76,7 +76,7 @@ export const AdminSidebar = ({ isOpen, onToggle }) => {
             </div>
             {isOpen && (
               <div className="logo-text">
-                <span className="app-name">AutoFix</span>
+                <span className="app-name">Auto Care Link</span>
                 <span className="app-tagline">Vehicle Services</span>
               </div>
             )}

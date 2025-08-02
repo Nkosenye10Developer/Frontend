@@ -4,7 +4,7 @@ import { FaEnvelope, FaEye, FaEyeSlash } from 'react-icons/fa';
 import '../Login.css';
 import logo from '../assets/Ellipse 3.png'
 import toast from 'react-hot-toast';
-
+import { login } from '../api/loginApi';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,38 +15,54 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit =  async (e) => {
     
+    e.preventDefault();
+
     // Basic validation
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
     }
-    
+  
     setIsLoading(true);
-    // Here you would typically call your authentication API
-    console.log('Login attempt with:', { email, password, rememberMe });
-    
+    setError(null);
+  
+    try {
+      const responseData = await login({ email, password, rememberMe });
 
-    
-    toast.success("Logged successfully");
-    // On successful login:
-    navigate('/dashboard'); // Redirect to the layout page
+ 
+  
+      toast.success(responseData.message || 'Login successfull');
+  
 
 
-    setTimeout(() => {
-      toast.success(
-          responseData.Message ||
-          responseData.message ||
-          'Login successful',
-          {
-              duration: 2000,
-              position: 'top-center',
+      console.log('Login successful:', responseData.user.role);
+      if(responseData.user.role === 'Admin') {
+        localStorage.setItem('userObj',responseData.user);
+        navigate('/admindashboard'); // Redirect after success
 
-          }
-      );
-  }, 100);
+        
+    }else if(responseData.user.role === 'Business') {
+      localStorage.setItem('userObj',JSON.stringify(responseData.user));
+      localStorage.setItem('businessObj',JSON.stringify(responseData.business));
+        navigate('/businessdashboard'); // Redirect after success
+    }else if(responseData.user.role === 'Customer') {
+      localStorage.setItem('userObj',JSON.stringify(responseData.user));
+      localStorage.setItem('customerObj',JSON.stringify(responseData.customer));
+      localStorage.setItem('businessObj',JSON.stringify(responseData.business));
+        navigate('/dashboard'); // Redirect after success
+    }
+     
+    } catch (error) {
+      // Handle errors (e.g. 401, 500)
+      const errorMessage =
+        error?.response?.data?.message || 'Login failed. Please try again.';
+      setError(errorMessage);
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

@@ -11,10 +11,30 @@ export const Sidebar = ({ isOpen, onToggle }) => {
   const [activeLink, setActiveLink] = useState('Dashboard');
   const navigate = useNavigate();
 
+  // const logout = async () => {
+  //   toast.success("Logged out successfully");
+  //   navigate('/login');
+  // };
+
+
+
   const logout = async () => {
-    toast.success("Logged out successfully");
-    navigate('/login');
-  };
+    try {
+        
+
+        if (res.ok) {
+            // Redirect to login or homepage
+            toast.success("Logged out");
+            navigate('/'); // or wherever your login page is
+        } else {
+            toast.error("Logout failed");
+        }
+    } catch (error) {
+        console.error("Logout error:", error);
+        toast.error("Logout error");
+    }
+};
+
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -36,6 +56,7 @@ export const Sidebar = ({ isOpen, onToggle }) => {
     const path = location.pathname;
     if (path.includes('vehicles')) setActiveLink('My Vehicles');
     else if (path.includes('wallet')) setActiveLink('Wallet');
+    else if (path.includes('jobcards')) setActiveLink('Job Cards');
     else if (path.includes('history')) setActiveLink('Service History');
     else if (path.includes('jobrequest')) setActiveLink('Job Request');
     else if (path.includes('referrals')) setActiveLink('Referrals');
@@ -46,6 +67,7 @@ export const Sidebar = ({ isOpen, onToggle }) => {
     { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
     { path: '/vehicles', icon: 'bx bx-car', text: 'My Vehicles' },
     { path: '/wallet', icon: 'bx bx-wallet', text: 'Wallet' },
+    { path: '/jobcards', icon: 'bx bx-task', text: 'Job Cards' },
     { path: '/history', icon: 'bx bx-history', text: 'Service History' },
     { path: '/jobrequest', icon: 'bx bx-wrench', text: 'Job Request' },
     { path: '/referrals', icon: 'bx bx-share-alt', text: 'Referrals' },
@@ -73,7 +95,7 @@ export const Sidebar = ({ isOpen, onToggle }) => {
             </div>
             {isOpen && (
               <div className="logo-text">
-                <span className="app-name">AutoFix</span>
+                <span className="app-name">Auto Care Link</span>
                 <span className="app-tagline">Vehicle Services</span>
               </div>
             )}

@@ -40,11 +40,11 @@ export const BusinessSidebar = ({ isOpen, onToggle }) => {
     else if (path.includes('communication')) setActiveLink('Communication');
     else if (path.includes('viewjobrequest')) setActiveLink('View Job Request');
     else if (path.includes('manageprofile')) setActiveLink('Manage Profile');
-    else setActiveLink('Dashboard');
+    else setActiveLink('Business Dashboard');
 }, [location]);
 
 const menuItems = [
-    { path: '/dashboard', icon: 'bx bx-home-alt', text: 'Dashboard' },
+    { path: '/businessdashboard', icon: 'bx bx-home-alt', text: 'Business Dashboard' },
     { path: '/inventorymanagement', icon: 'bx bx-package', text: 'Invetory Management' },
     { path: '/managejobcards', icon: 'bx bx-clipboard', text: 'Manage JobCards' },
     { path: '/communication', icon: 'bx bx-message-dots', text: 'Communication' },
@@ -73,7 +73,7 @@ const menuItems = [
             </div>
             {isOpen && (
               <div className="logo-text">
-                <span className="app-name">AutoFix</span>
+                <span className="app-name">Auto Care Link</span>
                 <span className="app-tagline">Vehicle Services</span>
               </div>
             )}

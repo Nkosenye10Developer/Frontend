@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
+import { Loader } from '../Loader/Loader';
 import './Layout.css';
 
 export const CustomerLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,7 +21,18 @@ export const CustomerLayout = ({ children }) => {
       }
     };
 
-    handleResize();
+    const initializeLayout = async () => {
+      // Handle resize on mount
+      handleResize();
+      
+      // Simulate initialization time (you can replace this with actual initialization logic)
+      // For example: loading user data, checking permissions, etc.
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setIsLoading(false);
+    };
+
+    initializeLayout();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -27,6 +40,11 @@ export const CustomerLayout = ({ children }) => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  // Show loader while initializing
+  if (isLoading) {
+    return <Loader message="Loading..." />;
+  }
 
   return (
     <div className="app-container">

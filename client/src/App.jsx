@@ -1,18 +1,19 @@
+import { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AppRoutes } from './routes/AppRoutes';
-import { Suspense } from 'react';
-import { Loader } from './components/layout/Loader';
+import { Loader } from './components/Loader/Loader';
 
 function App() {
   return (
     <div>
+      <Suspense fallback={<Loader message="Loading application..." />}>
+        <AppRoutes />
+      </Suspense>
       
-      
-      <Suspense fallback={<Loader />}>
-      <Toaster position="top-center" reverseOrder={false} />
-      <AppRoutes />
-
-    </Suspense>
+      <Toaster 
+        position="top-center" 
+        reverseOrder={false}
+      />
     </div>
   );
 }

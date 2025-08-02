@@ -1,79 +1,78 @@
-import React from "react";
-
-
+import React, { useState } from "react";
 import { AdminLayout } from "../../components/layout/AdminLayout";
-import '../customer/Table.css'
-
-
+import { Link } from "react-router-dom";
 
 export const ViewCustomer = () => {
+  
+
   return (
     <AdminLayout>
-       <section className="home p-2">
-      <div className="row">
-        <div className="mb-5">
-          <h1>View Customer</h1>
-        </div>
-        <div className="mt-5 d-flex justify-content-between">
-          <div className="search-box d-flex justify-content-start me-2 w-50">
-            <i className='bx bx-search'></i>
-            <input type="text" placeholder="Search for anything here.." />
-          </div>
-          <div>
-         
-          </div>
-        </div>
-        <div className="table-container">
-          <table className="authors-table">
-            <thead>
-              <tr>
-                <th>Active Ingredient</th>
-                <th>Medication Name</th>
-                <th className="text-center">Uses</th>
-                <th>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span>Actions</span>
-                    <button className="btn btn-sm btn-success ms-2">
-                      <i className="uil uil-file-export"></i> Export
-                    </button>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div className="author-info">
-                    <p className="author-name">1</p>
-                  </div>
-                </td>
-                <td>
-                  <div className="function-info">
-                    <p className="function-role">Panado</p>
-                  </div>
-                </td>
-                <td>
-                  <div className="text-center">
-                    <p>Mild to moderate pain (headache, toothache, muscle pain, menstrual cramps).</p>
-                  </div>
-                </td>
-                <td>
-                  <button className="btn btn-primary">
-                  <i class='bx  bx-edit'  ></i> 
-                  </button>
-                  <button className="btn btn-danger">
-                  <i class='bx  bx-trash'  ></i> 
-                  </button>
-                </td>
-              </tr>
-              
-           
-           
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+       
+        
+
+   <div className="container-fluid w-100">
+      <h1 className="text-black">View Customer</h1>
+ 
+
+      
+
+
+<div className="row mb-3">
+ 
+  <div className="col-md-6 mb-2 mb-md-0">
+    <input 
+      type="text" 
+      className="form-control" 
+      placeholder="Search View Customer..." 
+    />
+  </div>
+
+  
+ 
+</div>
+ <table className="table table-hover align-middle ">
+        <thead className="table-light">
+          <tr >
+            <th className="text-center">Name & Surname</th>
+            <th className="text-center"></th>
+            <th className="text-center">Mileage</th>
+            <th className="text-center">Claim Number</th>
+            <th className="text-center">Make</th>
+            <th className="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+         <tr>
+            <td  className="text-center text-muted">
+              No applications found.
+            </td>
+            <td  className="text-center text-muted">
+              No applications found.
+            </td>
+            <td className="text-center text-muted">
+              No applications found.
+            </td>
+            <td  className="text-center text-muted">
+              No applications found.
+            </td>
+
+            <td  className="text-center text-muted">
+              No applications found.
+            </td>
+
+
+            <td>
+            <button class="btn btn-primary btns1 me-2">  <i className="bi bi-pencil-square"></i></button>
+            <button class="btn btn-danger"> <i className="bi bi-archive-fill"></i></button>
+          </td>
+            
+            
+        </tr>
+       
+        </tbody>
+      </table>
+</div>
     </AdminLayout>
   );
 };

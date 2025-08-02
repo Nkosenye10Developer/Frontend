@@ -20,13 +20,17 @@ import { Communications } from '../pages/admin/Communications';
 import { ManageBusinesses } from '../pages/admin/ManageBusinesses';
 import { Stats } from '../pages/admin/Stats';
 import { ManageReports } from '../pages/admin/ManageReports';
-
 import { ManageJobCards } from '../pages/business/ManageJobCards';
 import { InventoryManagement } from '../pages/business/InventoryManagement';
 import { Communication } from '../pages/business/Communication';
 import { ManageProfile } from '../pages/business/ManageProfile';
 import { Customer } from '../pages/business/Customer';
 import Signup from '../pages/Signup';
+import { BusinessDashboard } from '../pages/business/BusinessDashboard';
+import { AdminDashboard } from '../pages/admin/AdminDashboard';
+import { JobCards } from '../pages/customer/JobCards';
+import { JobCardStage } from '../pages/customer/JobCardStage';
+import { AddJobCards } from '../pages/business/AddJobCards';
 
 export const AppRoutes = () => {
   return (
@@ -41,10 +45,12 @@ export const AppRoutes = () => {
       <Route path="/add-vehicles" element={<AddVehicles />} />
       <Route path="/wallet" element={<Wallet />} />
       <Route path="/add-credits" element={<AddCredits />} />
+      <Route path="/jobcards" element={<JobCards />} />
       <Route path="/jobrequest" element={<JobRequest />} />
       <Route path="/add-jobrequest" element={<AddJobRequest />} />
       <Route path="/history" element={<ServiceHistory />} />
       <Route path="/referrals" element={<Referrals />} />
+      <Route path="/jobstage" element={<JobCardStage />} />
 
      {/* Admin Routes */}
       <Route path="/admin" element={<AdminLayout />} />
@@ -54,6 +60,8 @@ export const AppRoutes = () => {
       <Route path="/managebusinesses" element={<ManageBusinesses/>} />
       <Route path="/stats" element={<Stats/>} />
       <Route path="/managereports" element={<ManageReports/>} />
+      <Route path="/admindashboard" element={<AdminDashboard />} />
+
 
      {/* Business Routes */}
       <Route path="/business" element={<BusinessLayout />} />
@@ -64,6 +72,8 @@ export const AppRoutes = () => {
       <Route path="/communication" element={<Communication />} />
       <Route path="/manageprofile" element={<ManageProfile />} />
       <Route path="/customer" element={<Customer />} />
+      <Route path="/businessdashboard" element={<BusinessDashboard />} />
+      <Route path="/add-jobcards" element={<AddJobCards />} />
     </Routes>
 
   );

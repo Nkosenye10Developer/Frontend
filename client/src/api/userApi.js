@@ -10,8 +10,13 @@ export const getAllUsers = async () => {
   return res.data;
 };
 
-export const createUser = async (userData) => {
-  const res = await axios.post('/User', userData);
+export const createCustomer = async (userData) => {
+  const res = await axios.post('/auth/RegisterCustomer', userData);
+  return res.data;
+};
+
+export const createBusiness = async (userData) => {
+  const res = await axios.post('/auth/RegisterBusiness', userData);
   return res.data;
 };
 

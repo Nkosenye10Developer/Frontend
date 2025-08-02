@@ -1,50 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { CustomerLayout } from '../../components/layout/CustomerLayout';
 import { Link } from 'react-router-dom';
-import './ServiceHistory.css';
-import './Table.css'; // Assuming you have a Table.css for table styling
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const ServiceHistory = () => {
-  // Sample data - replace with actual API calls
-  const [serviceHistory, setServiceHistory] = useState([
-    {
-      id: 1,
-      date: '2023-06-15',
-      description: 'Oil change and filter replacement',
-      status: 'Completed',
-      serviceType: 'Maintenance',
-      vehicle: 'Toyota Corolla (ABC123)',
-      business: 'AutoCare Center'
-    },
-    {
-      id: 2,
-      date: '2023-05-10',
-      description: 'Brake pad replacement',
-      status: 'Completed',
-      serviceType: 'Repair',
-      vehicle: 'Toyota Corolla (ABC123)',
-      business: 'QuickFix Garage'
-    },
-    {
-      id: 3,
-      date: '2023-04-05',
-      description: 'Tire rotation and balancing',
-      status: 'Completed',
-      serviceType: 'Maintenance',
-      vehicle: 'Toyota Corolla (ABC123)',
-      business: 'AutoCare Center'
-    }
-  ]);
-
+  const [serviceHistory, setServiceHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all'); // 'all', 'completed', 'pending'
 
-  // In a real app, you would fetch data from your API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Simulate API call
+        // Replace this with your actual API call
         await new Promise(resolve => setTimeout(resolve, 800));
+        setServiceHistory([]); // Set fetched data here
         setLoading(false);
       } catch (error) {
         console.error('Error fetching service history:', error);
@@ -55,87 +24,95 @@ export const ServiceHistory = () => {
     fetchData();
   }, []);
 
-  const filteredHistory = filter === 'all' 
-    ? serviceHistory 
-    : serviceHistory.filter(item => item.status.toLowerCase() === filter);
+  const filteredHistory =
+    filter === 'all'
+      ? serviceHistory
+      : serviceHistory.filter(item => item.status.toLowerCase() === filter);
+
+  const statusBadge = (status) => {
+    switch (status?.toLowerCase()) {
+      case 'completed':
+        return <span className="badge bg-success">Completed</span>;
+      case 'pending':
+        return <span className="badge bg-warning text-dark">Pending</span>;
+      default:
+        return <span className="badge bg-secondary">{status}</span>;
+    }
+  };
 
   return (
     <CustomerLayout>
-      <div className="service-history-container">
-        <div className="page-header">
-          <h1>Service History</h1>
-          <div className="filter-controls">
-            <button 
-              className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
-              onClick={() => setFilter('all')}
-            >
-              All Services
-            </button>
-            <button 
-              className={`filter-btn ${filter === 'completed' ? 'active' : ''}`}
-              onClick={() => setFilter('completed')}
-            >
-              Completed
-            </button>
-            <button 
-              className={`filter-btn ${filter === 'pending' ? 'active' : ''}`}
-              onClick={() => setFilter('pending')}
-            >
-              Pending
-            </button>
-          </div>
+      <div className="container-fluid">
+        <h2 className="fw-bold">Service History</h2>
+        <p className="text-muted">Your vehicle service records and updates</p>
+
+        {/* Filter Buttons */}
+        <div className="btn-group mb-3">
+          <button
+            className={`btn btn-outline-primary ${filter === 'all' ? 'active' : ''}`}
+            onClick={() => setFilter('all')}
+          >
+            All Services
+          </button>
+          <button
+            className={`btn btn-outline-primary ${filter === 'completed' ? 'active' : ''}`}
+            onClick={() => setFilter('completed')}
+          >
+            Completed
+          </button>
+          <button
+            className={`btn btn-outline-primary ${filter === 'pending' ? 'active' : ''}`}
+            onClick={() => setFilter('pending')}
+          >
+            Pending
+          </button>
         </div>
 
+        {/* Table */}
         {loading ? (
-          <div className="loading-spinner">Loading service history...</div>
-        ) : (
-          <div className="table-container">
-            {filteredHistory.length > 0 ? (
-              <table className="authors-table">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Service Type</th>
-                    <th>Vehicle</th>
-                    <th>Business</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+          <div className="text-center py-5">Loading service history...</div>
+        ) : filteredHistory.length > 0 ? (
+          <div className="table-responsive">
+            <table className="table table-hover align-middle">
+              <thead className="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Service Type</th>
+                  <th>Vehicle</th>
+                  <th>Business</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredHistory.map((service) => (
+                  <tr key={service.id}>
+                    <td>{service.date}</td>
+                    <td>{service.description}</td>
+                    <td>{service.serviceType}</td>
+                    <td>{service.vehicle}</td>
+                    <td>{service.business}</td>
+                    <td>{statusBadge(service.status)}</td>
+                    <td>
+                      <Link
+                        to={`/service-details/${service.id}`}
+                        className="btn btn-outline-primary btn-sm"
+                      >
+                        View Details
+                      </Link>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {filteredHistory.map((service) => (
-                    <tr key={service.id}>
-                      <td>{service.date}</td>
-                      <td>{service.description}</td>
-                      <td>{service.serviceType}</td>
-                      <td>{service.vehicle}</td>
-                      <td>{service.business}</td>
-                      <td>
-                        <span className={`status-badge ${service.status.toLowerCase()}`}>
-                          {service.status}
-                        </span>
-                      </td>
-                      <td>
-                        <Link 
-                          to={`/service-details/${service.id}`} 
-                          className="action-link view-link"
-                        >
-                          View Details
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <div className="no-results">
-                <p>No service history found</p>
-                <Link to="/request-service" className="btn btn-primary">
-                  Request New Service
-                </Link>
-              </div>
-            )}
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="alert alert-info mt-4">
+            <p className="mb-2">No service history found.</p>
+            <Link to="/request-service" className="btn btn-primary">
+              Request New Service
+            </Link>
           </div>
         )}
       </div>

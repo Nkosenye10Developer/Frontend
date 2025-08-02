@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { BusinessSidebar} from './BusinessSidebar';
+import { BusinessSidebar } from './BusinessSidebar';
 import { Topbar } from './Topbar';
+import { Loader } from '../Loader/Loader';
 import './Layout.css';
 
 export const BusinessLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,7 +21,18 @@ export const BusinessLayout = ({ children }) => {
       }
     };
 
-    handleResize();
+    const initializeBusinessLayout = async () => {
+      // Handle resize on mount
+      handleResize();
+      
+      // Simulate business initialization (replace with real logic like loading business data)
+      // For example: await loadBusinessProfile(), await getBusinessSettings(), etc.
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setIsLoading(false);
+    };
+
+    initializeBusinessLayout();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -27,6 +40,11 @@ export const BusinessLayout = ({ children }) => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  // Show loader while initializing business layout
+  if (isLoading) {
+    return <Loader message="Loading business dashboard..." />;
+  }
 
   return (
     <div className="app-container">
